@@ -1,15 +1,13 @@
 // fetch("https://api.alquran.cloud/v1/ayah/260/editions/quran-uthmani,uz.sodik")
 //   .then((response) => response.json())
 //   .then((res) => console.log(res));
-// fetch("https://api.quran.sutanlab.id/surah/1")
-//   .then((response) => response.json())
-//   .then((res) => console.log(res));
-// fetch("https://api.quran.sutanlab.id/surah")
-//   .then((response) => response.json())
-//   .then((res) => console.log(res));
 let nomi;
 let oqish;
 const suralar = document.querySelector(".suralar");
+const box1 = document.querySelector(".box__1");
+const box2 = document.querySelector(".box__2");
+const arabicText = document.querySelector(".arabic__text");
+
 let addSura = async function () {
   let a = await fetch("https://api.quran.sutanlab.id/surah");
   let b = await a.json();
@@ -24,16 +22,40 @@ let addSura = async function () {
     </div>
   </div>`;
   }
-  let clicked = document.addEventListener("click", async function (e) {
+  let clicked = suralar.addEventListener("click", async function (e) {
+    e.preventDefault();
+    const englishText = document.querySelector(".english__text");
+    englishText.innerHTML = "";
+    arabicText.innerHTML = "";
     let target = e.target;
-    let num = Number(target.closest(".row").id[3]);
+    let num = +target.closest(".row").id.split("_")[1];
     let k = await fetch(`https://api.quran.sutanlab.id/surah/${num}`);
     let c = await k.json();
-
-    // for (let d of c.data.verses) {
-    //   console.log(d.text.arab);
-    //   console.log(d.text.transliteration.en);
-    // }
+    let i = 1;
+    let j = 1;
+    let verses = c.data.verses;
+    for (let d of verses) {
+      // let html1 = `<p class="text__1">${i++}. ${d.text.arab}</p>`;
+      let html2 = `<p class="text__1">${j++}. ${d.text.transliteration.en}</p>`;
+      // arabicText.insertAdjacentHTML("beforeend", html1);
+      englishText.insertAdjacentHTML("beforeend", html2);
+    }
+    impor(num);
   });
 };
 addSura();
+let impor = function (id) {
+  fetch(
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/uzb-alaaudeenmansou.json"
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      let i = 1;
+      res.quran.forEach((element) => {
+        if (element.chapter == id) {
+          let html1 = `<p class="text__1">${i++}. ${element.text}</p>`;
+          arabicText.insertAdjacentHTML("beforeend", html1);
+        }
+      });
+    });
+};

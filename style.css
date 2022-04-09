@@ -11,15 +11,25 @@ body {
   background-color: #f0f0f0;
 }
 .container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   background-color: #fff;
-  padding: 3rem;
+  padding: 0 3rem;
+  display: flex;
+  gap: 4rem;
+}
+.box__1 {
+  width: 30%;
+  height: 100vh;
+  overflow: auto;
+}
+.box__2 {
+  width: 70%;
 }
 .row {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 .sura__info {
   font-size: 1.8rem;
@@ -45,7 +55,7 @@ body {
 }
 .sura__num {
   width: 6rem;
-  height: 5.5rem;
+  height: 5rem;
   border-radius: 50%;
   box-shadow: 0 0.4rem 0.8rem rgba(173, 172, 172, 0.959);
   position: relative;
@@ -60,14 +70,113 @@ body {
 .text__1 {
   font-size: 1.8rem;
   margin: 0.6rem 0;
+  line-height: 1.4;
 }
 .text__box {
   margin-bottom: 3rem;
   width: 100%;
-  height: 26vh;
+  height: 25vh;
   overflow: auto;
+  background-color: #f0f0f0;
+  padding-left: 1rem;
 }
 .title {
   font-size: 2.2rem;
   margin-bottom: 1rem;
+}
+
+/* player */
+.player {
+  background: linear-gradient(to right, #000, #434343);
+  position: sticky;
+  top: 0;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+  z-index: 1;
+}
+.player .ayah {
+  padding: 10px 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}
+.player audio {
+  width: 100%;
+  height: 40px;
+  margin: 15px 0;
+}
+.player .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.buttons .icon {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #23162f;
+  font-size: 20px;
+  cursor: pointer;
+}
+.surahs > div {
+  color: #23162f;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  width: calc(100% - 90px);
+  transition: 0.3s color ease;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  position: relative;
+  font-size: 20px;
+  counter-increment: surah-counter;
+}
+.surahs > div::after {
+  content: counter(surah-counter);
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  left: -90px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  font-size: 25px;
+  line-height: 80px;
+  text-align: center;
+  background-color: inherit;
+  transition: inherit;
+  box-shadow: inherit;
+}
+.surahs > div::before {
+  content: "";
+  position: absolute;
+  border: 7px solid transparent;
+  border-right-color: #23162f;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -14px;
+}
+.surahs > div:hover,
+.surahs > div:hover::after {
+  background: linear-gradient(to bottom, #000, #434343);
+  color: #fff;
+}
+/** editiom From Vs Code **/
+@media (max-width: 400px) {
+  .surahs > div {
+    font-size: 17px;
+    padding: 5px 10px;
+    width: calc(100% - 70px);
+  }
+  .surahs > div::after {
+    width: 60px;
+    height: 60px;
+    font-size: 19px;
+    line-height: 60px;
+    left: -70px;
+  }
 }

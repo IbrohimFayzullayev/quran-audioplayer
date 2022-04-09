@@ -6,11 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quran Player</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <div class="container">
-      <div class="suralar"></div>
-      <!-- <div class="player">
+      <div class="box__1">
+        <div class="suralar"></div>
+        <!-- <div class="player">
         <div class="ayah">اضغط علي السورة للاستماع اليها</div>
         <audio src="" class="quranPlayer" controls autoplay></audio>
         <div class="buttons">
@@ -19,7 +27,37 @@
           <div class="icon prev"><i class="fas fa-backward"></i></div>
         </div>
       </div> -->
+        <!-- <div id="id_${Number(val) + 1}" class="row">
+        <div class="sura__num">
+          <p class="num_1">${Number(val) + 1}</p>
+        </div>
+        <div class="sura__info">
+          <p class="arab__name name">${b.data[val].name.long}</p>
+          <p class="sura__name name">${b.data[val].name.transliteration.en}</p>
+        </div>
+      </div>; -->
+      </div>
+      <div class="box__2">
+        <h2 class="title">Arabic Text</h2>
+        <div class="arabic__text text__box">
+          <!-- <p class="text__1">1.Salom</p> -->
+        </div>
+        <h2 class="title">English Text</h2>
+        <div class="english__text text__box">
+          <!-- <p class="text__1">1.Salom</p> -->
+        </div>
+        <div class="player">
+          <div class="ayah">اضغط علي السورة للاستماع اليها</div>
+          <audio src="" class="quranPlayer" controls autoplay></audio>
+          <div class="buttons">
+            <div class="icon next"><i class="fas fa-backward"></i></div>
+            <div class="icon play"><i class="fas fa-play"></i></div>
+            <div class="icon prev"><i class="fas fa-forward"></i></div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <script type="module" src="script.js"></script>
   </body>
 </html>

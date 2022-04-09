@@ -1,8 +1,3 @@
-// fetch("https://api.alquran.cloud/v1/ayah/260/editions/quran-uthmani,uz.sodik")
-//   .then((response) => response.json())
-//   .then((res) => console.log(res));
-let nomi;
-let oqish;
 const suralar = document.querySelector(".suralar");
 const box1 = document.querySelector(".box__1");
 const box2 = document.querySelector(".box__2");
@@ -35,9 +30,7 @@ let addSura = async function () {
     let j = 1;
     let verses = c.data.verses;
     for (let d of verses) {
-      // let html1 = `<p class="text__1">${i++}. ${d.text.arab}</p>`;
       let html2 = `<p class="text__1">${j++}. ${d.text.transliteration.en}</p>`;
-      // arabicText.insertAdjacentHTML("beforeend", html1);
       englishText.insertAdjacentHTML("beforeend", html2);
     }
     impor(num);

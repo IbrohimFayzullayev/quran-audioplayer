@@ -11,7 +11,6 @@ let audio = document.querySelector(".quranPlayer"),
   play = document.querySelector(".play");
 let menuBar = document.querySelector(".menu__bar");
 let suraName = document.querySelector(".logo__name");
-let nameSurah;
 let addSura = async function () {
   let a = await fetch("https://api.quran.sutanlab.id/surah");
   let b = await a.json();

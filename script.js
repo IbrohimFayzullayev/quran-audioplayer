@@ -29,6 +29,7 @@ let addSura = async function () {
   }
   let clicked = suralar.addEventListener("click", async function (e) {
     e.preventDefault();
+    e.stopPropagation();
     if (windowX.matches) {
       box1.style.opacity = "0";
       box1.style.display = "none";
@@ -114,7 +115,11 @@ let addSura = async function () {
       audio.src = AyahsAudios[index];
       ayah.innerHTML = AyahsText[index];
     }
-    suraName.textContent = target.children[1].textContent;
+    // console.log(target.children);
+    // console.log(target.children[1]);
+    // if (target.children[1]) {
+    //   suraName.textContent = target.children[1].textContent;
+    // }
   });
 };
 addSura();

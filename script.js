@@ -10,6 +10,8 @@ let audio = document.querySelector(".quranPlayer"),
   prev = document.querySelector(".prev"),
   play = document.querySelector(".play");
 let menuBar = document.querySelector(".menu__bar");
+let suraName = document.querySelector(".logo__name");
+let nameSurah;
 let addSura = async function () {
   let a = await fetch("https://api.quran.sutanlab.id/surah");
   let b = await a.json();
@@ -36,6 +38,7 @@ let addSura = async function () {
     englishText.innerHTML = "";
     arabicText.innerHTML = "";
     let target = e.target;
+    suraName.textContent = target.children[1].textContent;
     let num = +target.closest(".row").id.split("_")[1];
     let k = await fetch(`https://api.quran.sutanlab.id/surah/${num}`);
     let c = await k.json();
@@ -65,13 +68,13 @@ let addSura = async function () {
         AyahIndex = 0;
         changeAyah(AyahIndex);
         audio.pause();
-        // Swal.fire({
-        //   position: "center",
-        //   icon: "success",
-        //   title: "surah has been ended",
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "surah has been ended",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         isPlaying = true;
         togglePlay();
       }

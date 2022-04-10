@@ -11,6 +11,8 @@ let audio = document.querySelector(".quranPlayer"),
   play = document.querySelector(".play");
 let menuBar = document.querySelector(".menu__bar");
 let suraName = document.querySelector(".logo__name");
+let windowX = window.matchMedia("(max-width: 700px)");
+
 let addSura = async function () {
   let a = await fetch("https://api.quran.sutanlab.id/surah");
   let b = await a.json();
@@ -27,17 +29,18 @@ let addSura = async function () {
   }
   let clicked = suralar.addEventListener("click", async function (e) {
     e.preventDefault();
-    box1.style.opacity = "0";
-    box1.style.display = "none";
-    box2.style.opacity = "1";
-    box2.style.display = "block";
-    menuBar.style.opacity = "1";
-    menuBar.style.display = "block";
+    if (windowX.matches) {
+      box1.style.opacity = "0";
+      box1.style.display = "none";
+      box2.style.opacity = "1";
+      box2.style.display = "block";
+      menuBar.style.opacity = "1";
+      menuBar.style.display = "block";
+    }
     const englishText = document.querySelector(".english__text");
     englishText.innerHTML = "";
     arabicText.innerHTML = "";
     let target = e.target;
-    suraName.textContent = target.children[1].textContent;
     let num = +target.closest(".row").id.split("_")[1];
     let k = await fetch(`https://api.quran.sutanlab.id/surah/${num}`);
     let c = await k.json();
@@ -111,6 +114,7 @@ let addSura = async function () {
       audio.src = AyahsAudios[index];
       ayah.innerHTML = AyahsText[index];
     }
+    suraName.textContent = target.children[1].textContent;
   });
 };
 addSura();
@@ -142,10 +146,12 @@ let belgila = function (index) {
 };
 menuBar.addEventListener("click", function (e) {
   e.preventDefault();
-  box1.style.opacity = "1";
-  box1.style.display = "block";
-  box2.style.opacity = "0";
-  box2.style.display = "none";
-  menuBar.style.opacity = "0";
-  menuBar.style.display = "none";
+  if (windowX.matches) {
+    box1.style.opacity = "1";
+    box1.style.display = "block";
+    box2.style.opacity = "0";
+    box2.style.display = "none";
+    menuBar.style.opacity = "0";
+    menuBar.style.display = "none";
+  }
 });

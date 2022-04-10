@@ -9,6 +9,7 @@ let audio = document.querySelector(".quranPlayer"),
   next = document.querySelector(".next"),
   prev = document.querySelector(".prev"),
   play = document.querySelector(".play");
+let menuBar = document.querySelector(".menu__bar");
 let addSura = async function () {
   let a = await fetch("https://api.quran.sutanlab.id/surah");
   let b = await a.json();
@@ -25,6 +26,12 @@ let addSura = async function () {
   }
   let clicked = suralar.addEventListener("click", async function (e) {
     e.preventDefault();
+    box1.style.opacity = "0";
+    box1.style.display = "none";
+    box2.style.opacity = "1";
+    box2.style.display = "block";
+    menuBar.style.opacity = "1";
+    menuBar.style.display = "block";
     const englishText = document.querySelector(".english__text");
     englishText.innerHTML = "";
     arabicText.innerHTML = "";
@@ -131,3 +138,12 @@ let belgila = function (index) {
     uzbekcha.style.backgroundColor = "#4343435c";
   }
 };
+menuBar.addEventListener("click", function (e) {
+  e.preventDefault();
+  box1.style.opacity = "1";
+  box1.style.display = "block";
+  box2.style.opacity = "0";
+  box2.style.display = "none";
+  menuBar.style.opacity = "0";
+  menuBar.style.display = "none";
+});
